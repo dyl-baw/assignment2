@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Information</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;        
+        }
+
+        .pokemon_container {
+            text-align: center;
+            background-color: #eee;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+    Pokemon Information:
+        <br>
+    </h1>
+    This Pokemon Name: <b> <%= name %> </b>
+    <br>
+    This Pokemon id: <b> <%= id %> </b>
+    <br>
+    <div class="pokemon_container">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<%= id %>.png"
+        alt="">
+    </div>
+    <div class="stats">
+    <br>
+    Here are the stats of the Pokemon:
+    <br>
+    HP :
+    <progress value="<%= hp %>" max="255" <%= hp %>></progress>
+    <%= hp %>
+    <br>
+    Attack:
+    <progress value="<%= attack %>" max="255" <%= attack %>></progress> <%= attack %>
+    <br>
+    Defense:
+    <progress value="<%= defense %>" max="255" <%= defense %>></progress> <%= defense %>
+    <br>
+    Special Attack:
+    <progress value="<%= specialatk %>" max="255" <%= specialatk %>></progress> <%= specialatk %>
+    <br>
+    Defense Attack:
+    <progress value="<%= defenseatk %>" max="255" <%= defenseatk %>></progress> <%= defenseatk %>
+    <br>
+    Speed:
+    <progress value="<%= speed %>" max="255" <%= speed %>></progress> <%= speed %>
+    </div>
+</body>
+
+</html>

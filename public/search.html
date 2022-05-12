@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="search.js"></script>
+    <style>
+
+        body {
+            text-align: center;
+            background-color: #eee;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .card{
+            text-align: center;
+            margin: 10px;
+            border-radius: 20px;
+            background-color: rgb(134, 131, 131);
+        }
+
+        @media screen and (max-width: 750px) {
+            main, nav {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                /* align-items: center; */
+                text-align:left;
+            }
+        }
+    </style>
+    <title>Search</title>
+</head>
+
+<body>
+    <header>
+        <h1>Search for a Pokemon!</h1>
+    </header>
+    <label>Choose a Pokemon Type</label>
+    <select name="pokemon_type" id="pokemon_type">
+        <option value="grass">grass</option>
+        <option value="fire">fire</option>
+        <option value="water">water</option>
+        <option value="electric">electric</option>
+        <option value="ground">ground</option>
+        <option value="rock">rock</option>
+        <option value="fairy">fairy</option>
+        <option value="poison">poison</option>
+        <option value="bug">bug</option>
+        <option value="dragon">dragon</option>
+        <option value="psychic">psychic</option>
+        <option value="flying">flying</option>
+        <option value="steel">steel</option>
+        <option value="normal">normal</option>
+        <option value="ice">ice</option>
+        <option value="ghost">ghost</option>
+        <option value="dark">dark</option>
+    </select>
+
+
+    <div class="region-selection">
+        <label for="type">Choose a Region</label>
+        <select name="region" id="region">
+            <option value="kanto">Kanto (1 - 151)</option>
+            <option value="johto">Johto (152 - 251)</option>
+            <option value="hoenn">Hoenn (252 - 386)</option>
+            <option value="sinnoh">Sinnoh (387 - 494)</option>
+            <option value="unova">Unova (495 - 649)</option>
+            <option value="kalos">Kalos (650 - 721)</option>
+            <option value="alola">Alola (722 - 809)</option>
+            <option value="galar">Galar (810 - 898)</option>
+        </select>
+    </div>
+
+    <div class="searchName">
+        <label> Search for a Pokemon </label>
+        <input type="text" id="pokemonName" placeholder="Enter Pokemon Name or ID">
+        <input type="submit" value="search" id="searchPokemon">
+    </div>
+
+    <div id="history">
+
+    </div>
+    <main>
+
+
+    </main>
+</body>
+
+</html>

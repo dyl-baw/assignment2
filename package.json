@@ -1,0 +1,25 @@
+{
+  "name": "poke-api",
+  "version": "1.0.0",
+  "description": "This is a project being completed as an Assignment for BCIT COMP#2537. I hope you're able to have fun with this Pokédex once this project is complete!",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dyl-baw/poke-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dyl-baw/poke-api/issues"
+  },
+  "homepage": "https://github.com/dyl-baw/poke-api#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "ejs": "^3.1.7",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.3"
+  }
+}
