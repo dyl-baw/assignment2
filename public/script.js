@@ -37,7 +37,7 @@ async function ninePokemons() {
             add_poke += `<div class ="pokemon_images">`
         }
 
-        random = Math.floor(Math.random() * 898) + 1
+        random = Math.floor(Math.random() * 30) + 1
 
         await $.ajax({
             type: "GET",

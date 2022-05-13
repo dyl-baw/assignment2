@@ -72,6 +72,17 @@
             gap: 10px;
         }
 
+        #eventHistory {
+            display: flex;
+            flex-direction: column;
+            border: #333;
+            border-style: solid;
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            justify-content: center;
+        }
+
         @media screen and (max-width: 750px) {
             main {
                 display: flex;
