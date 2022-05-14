@@ -1,7 +1,7 @@
 function loadEventsToMainDiv() {
     $('#events').empty();
     $.ajax({
-        url: "http://localhost:3000/timeline/getAllEvents",
+        url: "https://arcane-fjord-59410.herokuapp.com/getAllEvents",
         type: "GET",
         success: (r) => {
             for (i = 0; i < r.length; i++) {
