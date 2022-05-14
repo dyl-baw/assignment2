@@ -60,16 +60,8 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  pokemonModel.find({
-      name: "bulbasaur",
-    },
-    (err, pokemon) => {
-      if (err) throw err;
-      console.log(pokemon);
-      res.send(pokemon);
-    }
-  );
-});
+  res.sendFile(`${__dirname}/public/main.html`);
+})
 
 // app.get("/pokemon/:name", (req, res) => {
 //   let queryObject = isNaN(req.params.name) ? {
@@ -210,7 +202,8 @@ app.get("/timeline/delete/:id", function (req, res) {
 
 app.get("/timeline/inscreaseHits/:id", function (req, res) {
   // console.log(req.body)
-  timelinesModel.updateOne({
+  timelinesModel.updateOne(
+    {
     _id: req.params.id,
   }, {
     $inc: {
