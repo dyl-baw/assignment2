@@ -1,22 +1,18 @@
-const { setup } = require("jsdom/lib/jsdom/living/generated/Element");
-
-const urldb = "http://localhost:3000";
-
 function loadEventsToMainDiv() {
+    $('#events').empty();
     $.ajax({
-        url: urldb + "timeline/getAllEvents",
+        url: "http://localhost:3000/timeline/getAllEvents",
         type: "GET",
-        success:(r) => {
-            console.log(r)
-            for( i = 0; i < r.length; i++) {
-                $("#events").append(`
-                <div class="event"> Event Text - ${r[i].text} 
-
+        success: (r) => {
+            for (i = 0; i < r.length; i++) {
+                let id = r[i]["_id"];
+                $('#events').append(`
+                <div class="event"> 
                 <span class="time"> Event Time - ${r[i].time} </span>
-
                 <span class="hits"> Event Hits - ${r[i].hits} </span>
-                <button class="deleteButton" onclick = deleteEvent("${id}") </button>
-                <button class="likeButtons" id="${r[i]["_id"]}"> Like! </button>
+                <span>Event Text - ${r[i].text} </span>
+                <button class="deletebutton" onclick=deleteEvent('${id}')> Delete </button>
+                <button class="likeButtons" onclick=increaseHits('${id}')> Like! </button>
                 </div>
                 `)
             }
@@ -24,31 +20,55 @@ function loadEventsToMainDiv() {
     })
 }
 
-function deleteEvent() {
+var date = new Date();
+
+function clearEvents() {
     $.ajax({
-        url: urldb + `/timeline/delete/:id`,
+        url: `/timeline/removeAll`,
         type: "GET",
-        success:  () => {
-            loadEvent();
+        success: () => {
+            loadEventsToMainDiv();
         }
     })
 }
 
-function increaseHits() {
-    x = this.id
+function checkProfile(pokemonName) {
     $.ajax({
-        url: urldb + "timeline/increaseHits/${x}",
-        type: "GET",
-        success: function (x){
-            console.log(x)
+        url: `/timeline/insert`,
+        type: "POST",
+        data: {
+            text: `${pokemonName} viewed`,
+            time: date.toLocaleTimeString(),
+            hits: 1
+        },
+        success: (data) => {
+            loadEventsToMainDiv();
         }
     })
 }
 
-function setup(){
-    loadEventsToMainDiv()
+function deleteEvent(id) {
+    $.ajax({
+        url: `/timeline/delete/${id}`,
+        type: "GET",
+        success: () => {
+            loadEventsToMainDiv();
+        }
+    })
+}
 
-    $("body").on("click", ".likeButtons", inscreaseHits)
+function increaseHits(id) {
+    $.ajax({
+        url: `/timeline/inscreaseHits/${id}`,
+        type: "GET",
+        success: () => {
+            loadEventsToMainDiv();
+        }
+    })
+}
+
+function setup() {
+    loadEventsToMainDiv();
 }
 
 $(document).ready(setup)

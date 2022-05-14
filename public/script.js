@@ -24,8 +24,8 @@ function processPokeResp(pokemon) {
     const pokemon_types = pokemon.types.map(type => type.type.name);
     const type = main_types.find(type => pokemon_types.indexOf(type) > -1);
     const colour = cardColors[type];
-    add_poke += `<div class="pokemon_container" style = "background-color : ${colour}"><a href="/profile/${pokemon.id}"><img src="${pokemon.sprites.other["official-artwork"].front_default}"> <div> </a>${upperCaseName} </div> </div>`
-    $(".pokemon_container").css("background-color", red);
+    add_poke += `<div class="pokemon_container" style = "background-color : ${colour}" onclick="checkProfile('${pokemon.name}')"><a href="/profile/${pokemon.id}"><img src="${pokemon.sprites.other["official-artwork"].front_default}"> <div> </a>${upperCaseName} </div> </div>`
+    // $(".pokemon_container").css("background-color", red);
     // pokemon_container.style.backgroundColor = color;
 }
 

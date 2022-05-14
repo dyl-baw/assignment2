@@ -38,7 +38,7 @@ function searchPokemon() {
     console.log(searchOnePokemon);
     $.ajax({
         type:"GET",
-        url:`https://pokeapi.co/api/v2/pokemon/${searchInput}`,
+        url:`http://localhost:3000/pokemon/${searchInput}`,
         success: searchOnePokemon
     })
     $("main").empty()

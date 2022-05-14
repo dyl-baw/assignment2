@@ -86,7 +86,7 @@ app.get("/", (req, res) => {
 // });
 
 app.get("/profile/:id", (req, res) => {
-  const url =`https://pokeapi.co/api/v2/pokemon/${req.params.id}`;
+  const url = `https://pokeapi.co/api/v2/pokemon/${req.params.id}`;
   pokemon = ""
 
   https.get(url, function (https_res) {
@@ -168,19 +168,18 @@ app.get("/ability/:name", (req, res) => { //This will give you the type of pokem
 
 // This is where the timeline js begins
 
-app.get('/timeline/getAllEvents', function (req, res) {
+app.get("/timeline/getAllEvents", function (req, res) {
   timelinesModel.find({}, function (err, data) {
-      if (err) {
-          console.log("Error " + err);
-      } else {
-          console.log("Data " + data);
-      }
-      res.send(data);
+    if (err) {
+      console.log("Error " + err);
+    } else {
+      console.log("Data " + data);
+    }
+    res.send(data);
   });
 })
 
-app.put('/timeline/insert', function (req, res) {
-  console.log(req.body)
+app.post('/timeline/insert', function (req, res) {
   timelinesModel.create({
       'text': req.body.text,
       'time': req.body.time,
@@ -191,71 +190,90 @@ app.put('/timeline/insert', function (req, res) {
       } else {
           console.log("Data " + data);
       }
-      res.send(data);
+      res.send("Insertion is successful!");
   });
 })
 
-app.get('/timeline/delete/:id', function (req, res) {
+app.get("/timeline/delete/:id", function (req, res) {
   // console.log(req.body)
   timelinesModel.remove({
-      '_id': req.params.id
+    '_id': req.params.id
   }, function (err, data) {
-      if (err) {
-          console.log("Error " + err);
-      } else {
-          console.log("Data " + data);
-      }
-      res.send("Delete request is successful!");
+    if (err) {
+      console.log("Error " + err);
+    } else {
+      console.log("Data " + data);
+    }
+    res.send("Delete request is successful!");
   });
 })
 
-app.get('/timeline/inscreaseHits/:id', function (req, res) {
+app.get("/timeline/inscreaseHits/:id", function (req, res) {
   // console.log(req.body)
   timelinesModel.updateOne({
-      '_id': req.params.id
-  },{
-      $inc: {'hits': 1}
-  } ,function (err, data) {
-      if (err) {
-          console.log("Error " + err);
-      } else {
-          console.log("Data " + data);
-      }
-      res.send("Update request is successful!");
-  });
-})
-
-app.get('/timeline', function (req, res) {
-  timelinesModel.find({}, function (err, timelineLogs) {
-      if (err) {
-          console.log("Error " + err);
-      } else {
-          console.log("Data " + JSON.stringify(timelineLogs));
-      }
-      res.send(JSON.stringify(timelineLogs));
-  });
-})
-
-app.put('/timeline/delete/:id', function (req, res) {
-  timelinesModel.deleteOne({
-      id: req.params.id
-  }, function (err, data) {
-      if (err) console.log(err);
-      else
-          console.log(data);
-      res.send("All good! Deleted.")
-  });
-})
-
-app.get('/timeline/update/:id', function (req, res) {
-  timelinesModel.updateOne({
-      id: req.params.id
+    _id: req.params.id,
   }, {
-      $inc: { hits: 1 }
+    $inc: {
+      hits: 1
+    }
   }, function (err, data) {
-      if (err) console.log(err);
-      else
-          console.log(data);
-      res.send("All good! Updated.")
+    if (err) {
+      console.log("Error " + err);
+    } else {
+      console.log("Data " + data);
+    }
+    res.send("Update request is successful!");
   });
 })
+
+app.get("/timeline", function (req, res) {
+  timelinesModel.find({}, function (err, timelineLogs) {
+    if (err) {
+      console.log("Error " + err);
+    } else {
+      console.log("Data " + JSON.stringify(timelineLogs));
+    }
+    res.send(JSON.stringify(timelineLogs));
+  });
+})
+
+app.put("/timeline/delete/:id", function (req, res) {
+  timelinesModel.deleteOne({
+    _id: req.params.id
+  }, function (err, data) {
+    if (err) console.log(err);
+    else
+      console.log(data);
+    res.send("All good! Deleted.")
+  });
+})
+
+app.get("/timeline/update/:id", function (req, res) {
+  timelinesModel.updateOne({
+    id: req.params.id
+  }, {
+    $inc: {
+      hits: 1
+    }
+  }, function (err, data) {
+    if (err) console.log(err);
+    else
+      console.log(data);
+    res.send("All good! Updated.")
+  });
+})
+
+app.get("/timeline/removeAll", function (req, res) {
+  timelinesModel.deleteMany({
+    hits: {
+      $gt: 0
+    },
+  }, function (err, data) {
+    if (err) {
+      console.log("Error " + err);
+    } else {
+      console.log("Everything Deleted");
+    }
+    res.send("Everything has been deleted!");
+  })
+});
